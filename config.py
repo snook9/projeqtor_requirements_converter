@@ -21,13 +21,14 @@ def set_syspath(absolute_dependencies: list):
             # on joute le dossier au début du syspath
             sys.path.insert(0, directory)
 
+
 def configure():
     import os
 
     # chemin absolu du dossier de ce script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     # dépendances absolues
-    absolute_dependencies=[
+    absolute_dependencies = [
         # les dossiers locaux contenant des classes et interfaces
         f"{script_dir}/interfaces",
         f"{script_dir}/services",

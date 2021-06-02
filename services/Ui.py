@@ -7,7 +7,7 @@
 from InterfaceUi import InterfaceUi
 
 # autres dépendances
-from Exception import Exception
+from MyException import MyException
 
 
 class Ui(InterfaceUi):
@@ -19,5 +19,5 @@ class Ui(InterfaceUi):
         try:
             print("Fichier ODT d'entrée :", input_file)
             print("Fichier CSV de sortie :", output_file)
-        except Exception as erreur:
+        except MyException as erreur:
             print(f"L'erreur suivante s'est produite : {erreur}")
