@@ -9,6 +9,7 @@ from odf.opendocument import load
 from odf import text
 from Requirement import Requirement
 
+
 # Classe pour lire des documents ODT de spécification (SRS - Software Requirements Specification) ou (STBL)
 # Une exigence doit commencer par un style REF-EXIGENCE
 # Elle doit finir par un style VERIF-EXIGENCE
@@ -21,13 +22,6 @@ class SrsDocument:
         self.requirement_title_style = "TITRE-EXIGENCE"
         self.requirement_body_style = "CORPS-EXIGENCE"
         self.requirement_test_style = "VERIF-EXIGENCE"
-
-    def displayRequirements(self, requirements):
-        for requirement in requirements:
-            print("Ref :", requirement.requirement_ref)
-            print("Titre :", requirement.requirement_title)
-            print("Corps :", requirement.requirement_body)
-            print("Vérif :", requirement.requirement_test)
 
     def read(self, file: str):
         try:
@@ -43,15 +37,15 @@ class SrsDocument:
                     # Si nous en trouvons une, on instancie une exigence
                     is_requirement_ref_found = True
                     requirement = Requirement()
-                    requirement.requirement_ref = paragraph
-                    print("Ref :", requirement.requirement_ref)
+                    requirement.ref = paragraph
+                    print("Ref :", requirement.ref)
 
                 # Recherche d'un titre d'exigence
                 if self.requirement_title_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.requirement_title = paragraph
-                        print("Titre :", requirement.requirement_title)
+                        requirement.title = paragraph
+                        print("Titre :", requirement.title)
                     else:
                         print("Erreur de format : pas de référence d'exigence pour le titre suivant", paragraph)
 
@@ -59,8 +53,8 @@ class SrsDocument:
                 if self.requirement_body_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.requirement_body = paragraph
-                        print("Corps :", requirement.requirement_body)
+                        requirement.body = paragraph
+                        print("Corps :", requirement.body)
                     else:
                         print("Erreur de format : pas de référence d'exigence pour le contenu suivant", paragraph)
 
@@ -68,16 +62,15 @@ class SrsDocument:
                 if self.requirement_test_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.requirement_test = paragraph
-                        print("Vérif :", requirement.requirement_test)
+                        requirement.test = paragraph
+                        print("Vérif :", requirement.test)
                         # Fin de la création de l'exigence
                         requirements.append(requirement)
                         is_requirement_ref_found = False
                     else:
                         print("Erreur de format : pas de référence d'exigence pour la méthode de test suivante", paragraph)
 
-            print("FIN DE L'IMPORT DES EXIGENCES")
-            self.displayRequirements(requirements)
+            return requirements
 
         except MyException as error:
             print(f"L'erreur suivante s'est produite : {error}")
