@@ -10,40 +10,40 @@ class Requirement:
     def __init__(self: object):
         pass
 
-    def __init__(self: object, requirement_ref="", requirement_title="", requirement_body="", requirement_test=""):
-        self.__requirement_ref = requirement_ref
-        self.__requirement_title = requirement_title
-        self.__requirement_body = requirement_body
-        self.__requirement_test = requirement_test
+    def __init__(self: object, ref="", title="", body="", test=""):
+        self.__ref = ref
+        self.__title = title
+        self.__body = body
+        self.__test = test
 
     @property
-    def requirement_ref(self: object) -> str:
-        return self.__requirement_ref
+    def ref(self: object) -> str:
+        return self.__ref
 
     @property
-    def requirement_title(self: object) -> str:
-        return self.__requirement_title
+    def title(self: object) -> str:
+        return self.__title
 
     @property
-    def requirement_body(self: object) -> str:
-        return self.__requirement_body
+    def body(self: object) -> str:
+        return self.__body
 
     @property
-    def requirement_test(self: object) -> str:
-        return self.__requirement_test
+    def test(self: object) -> str:
+        return self.__test
 
-    @requirement_ref.setter
-    def requirement_ref(self: object, requirement_ref: str):
-        self.__requirement_ref = requirement_ref
+    @ref.setter
+    def ref(self: object, ref: str):
+        self.__ref = ref
 
-    @requirement_title.setter
-    def requirement_title(self: object, requirement_title: str):
-        self.__requirement_title = requirement_title
+    @title.setter
+    def title(self: object, title: str):
+        self.__title = title
 
-    @requirement_body.setter
-    def requirement_body(self: object, requirement_body: str):
-        self.__requirement_body = requirement_body
+    @body.setter
+    def body(self: object, body: str):
+        self.__body = body
 
-    @requirement_test.setter
-    def requirement_test(self: object, requirement_test: str):
-        self.__requirement_test = requirement_test
+    @test.setter
+    def test(self: object, test: str):
+        self.__test = test

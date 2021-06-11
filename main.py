@@ -11,10 +11,10 @@ import sys
 config = config.configure()
 
 from Ui import Ui
-from SrsDocument import SrsDocument
+from pathlib import Path
 
 program_name = "ProjeQtOr Requirements Converter"
-program_version = "0.0.1"
+program_version = "0.0.2"
 
 
 def print_help(script_name: str):
@@ -25,15 +25,15 @@ def print_help(script_name: str):
                        '\t-v | --version\t\t\t: affiche la version du programme\n'
                        '\t-i | --inputfile=[filepath]\t: spécifie le chemin '
                        'vers le fichier ODT à convertir\n'
-                       '\t-o | --outputfile=[filepath]\t: spécifie le chemin '
-                       'vers le fichier CSV de sortie pour ProjeQtOr')
+                       '\t-o | --outputfolder=[path]\t: spécifie le dossier '
+                       'où sera enregistré le fichier CSV, à importer dans ProjeQtOr (par défaut : dossier courant)')
 
 
 def parse_opt(script_name: str, argv):
-    input_file = ""
-    output_file = ""
+    input_file = Path()
+    output_folder = Path("./")
     try:
-        opts, args = getopt.getopt(argv, "hvi:o:", ["help", "version", "inputfile=", "ouputfile="])
+        opts, args = getopt.getopt(argv, "hvi:o:", ["help", "version", "inputfile=", "ouputfolder="])
     except getopt.GetoptError:
         print_help(script_name)
         sys.exit(2)
@@ -45,19 +45,17 @@ def parse_opt(script_name: str, argv):
             print(program_name, program_version)
             sys.exit()
         elif opt in ("-i", "--inputfile"):
-            input_file = arg
-        elif opt in ("-o", "--ouputfile"):
-            output_file = arg
+            input_file = Path(arg)
+        elif opt in ("-o", "--ouputfolder"):
+            output_folder = Path(arg)
 
-    return input_file, output_file
+    return input_file, output_folder
 
 
 if __name__ == '__main__':
-    input_file_selected, output_file_selected = parse_opt(sys.argv[0], sys.argv[1:])
+    input_file_selected, output_folder_selected = parse_opt(sys.argv[0], sys.argv[1:])
 
-    srs_document = SrsDocument()
-    # instanciation couche [ui]
-    ui = Ui(srs_document)
-    # exécution couche [ui]
-    ui.run(input_file_selected, output_file_selected)
-
+    # instanciation
+    ui = Ui()
+    # exécution
+    ui.run(input_file_selected, output_folder_selected)
