@@ -11,6 +11,7 @@ import sys
 config = config.configure()
 
 from Ui import Ui
+from SrsDocument import SrsDocument
 
 program_name = "ProjeQtOr Requirements Converter"
 program_version = "0.0.1"
@@ -54,13 +55,9 @@ def parse_opt(script_name: str, argv):
 if __name__ == '__main__':
     input_file_selected, output_file_selected = parse_opt(sys.argv[0], sys.argv[1:])
 
-    try:
-        # instanciation couche [ui]
-        ui = Ui()
-        # exécution couche [console]
-        ui.run(input_file_selected, output_file_selected)
-    except BaseException as ex:
-        # on affiche l'erreur
-        print(f"L'erreur suivante s'est produite : {ex}")
-    finally:
-        pass
+    srs_document = SrsDocument()
+    # instanciation couche [ui]
+    ui = Ui(srs_document)
+    # exécution couche [ui]
+    ui.run(input_file_selected, output_file_selected)
+

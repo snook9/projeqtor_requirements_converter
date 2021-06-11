@@ -30,6 +30,7 @@ def configure():
     # dépendances absolues
     absolute_dependencies = [
         # les dossiers locaux contenant des classes et interfaces
+        f"{script_dir}/entities",
         f"{script_dir}/interfaces",
         f"{script_dir}/services",
         f"{script_dir}/utils",
