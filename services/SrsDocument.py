@@ -34,6 +34,13 @@ class SrsDocument:
             # Recherche d'une référence d'exigence
             if self.requirement_ref_style == paragraph.getAttribute('stylename'):
                 # Si nous en trouvons une, on instancie une exigence
+
+                # Si nous avions déjà trouvé une référence, alors il est probable que l'exigence soit mal terminée
+                # c'est-à-dire qu'elle ne se termine pas par une méthode de test
+                if True == is_requirement_ref_found:
+                    # Alors, on sauvegarde l'exigence que nous avions
+                    requirements.append(requirement)
+
                 is_requirement_ref_found = True
                 requirement = Requirement()
                 requirement.ref = teletype.extractText(paragraph)
