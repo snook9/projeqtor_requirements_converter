@@ -4,11 +4,11 @@
 
 
 # une classe d'exception propriétaire dérivant de [BaseException]
-class MyException(BaseException):
+class Error(Exception):
     # constructeur
-    def __init__(self: BaseException, code: int, message: str):
+    def __init__(self: Exception, code: int, message: str):
         # parent
-        BaseException.__init__(self, message)
+        Exception.__init__(self, message)
         # code erreur
         self.code = code
 
@@ -24,9 +24,4 @@ class MyException(BaseException):
     # setter
     @code.setter
     def code(self, code: int):
-        # le code d'erreur doit être un entier positif
-        if isinstance(code, int) and code > 0:
-            self.__code = code
-        else:
-            # exception
-            raise BaseException(f"code erreur {code} incorrect")
+        self.__code = code
