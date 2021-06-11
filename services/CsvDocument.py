@@ -23,11 +23,12 @@ class CsvDocument:
                               'idRiskLevel', 'idPriority', 'plannedWork', 'idTargetProductVersion', 'idTargetComponentVersion', 'idMilestone',
                               'handled', 'handledDate', 'done', 'doneDate', 'idle', 'idleDate', 'cancelled', 'result', 'locked', 'idLocker',
                               'lockedDate', 'countTotal', 'countPlanned', 'countPassed', 'countBlocked', 'countFailed', 'countIssues']
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer = csv.DictWriter(csvfile, delimiter=';', fieldnames=fieldnames)
 
                 writer.writeheader()
                 for requirement in requirements:
-                    writer.writerow({'externalReference': requirement.ref, 'name': requirement.title,
-                                     'description': requirement.body})
+                    writer.writerow({'externalReference': requirement.ref,
+                                     'name': requirement.title,
+                                     'description': requirement.body + '\n\n' + requirement.test})
         except MyException as error:
             print(f"L'erreur suivante s'est produite : {error}")

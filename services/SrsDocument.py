@@ -6,7 +6,7 @@
 # autres dépendances
 from MyException import MyException
 from odf.opendocument import load
-from odf import text
+from odf import text, teletype
 from Requirement import Requirement
 
 
@@ -37,14 +37,14 @@ class SrsDocument:
                     # Si nous en trouvons une, on instancie une exigence
                     is_requirement_ref_found = True
                     requirement = Requirement()
-                    requirement.ref = paragraph
+                    requirement.ref = teletype.extractText(paragraph)
                     print("Ref :", requirement.ref)
 
                 # Recherche d'un titre d'exigence
                 if self.requirement_title_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.title = paragraph
+                        requirement.title = teletype.extractText(paragraph)
                         print("Titre :", requirement.title)
                     else:
                         print("Erreur de format : pas de référence d'exigence pour le titre suivant", paragraph)
@@ -53,7 +53,7 @@ class SrsDocument:
                 if self.requirement_body_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.body = paragraph
+                        requirement.body = teletype.extractText(paragraph)
                         print("Corps :", requirement.body)
                     else:
                         print("Erreur de format : pas de référence d'exigence pour le contenu suivant", paragraph)
@@ -62,7 +62,7 @@ class SrsDocument:
                 if self.requirement_test_style == paragraph.getAttribute('stylename'):
                     # Seulement si nous avions trouvé une référence d'exigence
                     if True == is_requirement_ref_found:
-                        requirement.test = paragraph
+                        requirement.test = teletype.extractText(paragraph)
                         print("Vérif :", requirement.test)
                         # Fin de la création de l'exigence
                         requirements.append(requirement)
