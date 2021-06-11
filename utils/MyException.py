@@ -4,9 +4,9 @@
 
 
 # une classe d'exception propriétaire dérivant de [BaseException]
-class Exception(BaseException):
+class MyException(BaseException):
     # constructeur
-    def __init__(self: object, code: int, message: str):
+    def __init__(self: BaseException, code: int, message: str):
         # parent
         BaseException.__init__(self, message)
         # code erreur
