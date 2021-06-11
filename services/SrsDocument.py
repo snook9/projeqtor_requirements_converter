@@ -3,8 +3,6 @@
 # Tool for importing requirements in ProjeQtOr software
 
 
-# autres dépendances
-from Error import Error
 from odf.opendocument import load
 from odf import text, teletype
 from Requirement import Requirement
@@ -37,43 +35,39 @@ class SrsDocument:
 
                 # Si nous avions déjà trouvé une référence, alors il est probable que l'exigence soit mal terminée
                 # c'est-à-dire qu'elle ne se termine pas par une méthode de test
-                if True == is_requirement_ref_found:
+                if is_requirement_ref_found:
                     # Alors, on sauvegarde l'exigence que nous avions
                     requirements.append(requirement)
 
                 is_requirement_ref_found = True
                 requirement = Requirement()
                 requirement.ref = teletype.extractText(paragraph)
-                print("Ref :", requirement.ref)
 
             # Recherche d'un titre d'exigence
             if self.requirement_title_style == paragraph.getAttribute('stylename'):
                 # Seulement si nous avions trouvé une référence d'exigence
-                if True == is_requirement_ref_found:
+                if is_requirement_ref_found:
                     requirement.title = teletype.extractText(paragraph)
-                    print("Titre :", requirement.title)
                 else:
-                    print("Erreur de format : pas de référence d'exigence pour le titre suivant", paragraph)
+                    print("Erreur de format : pas de référence d'exigence pour le titre suivant ;", paragraph)
 
             # Recherche d'un corps d'exigence
             if self.requirement_body_style == paragraph.getAttribute('stylename'):
                 # Seulement si nous avions trouvé une référence d'exigence
-                if True == is_requirement_ref_found:
+                if is_requirement_ref_found:
                     requirement.body = teletype.extractText(paragraph)
-                    print("Corps :", requirement.body)
                 else:
-                    print("Erreur de format : pas de référence d'exigence pour le contenu suivant", paragraph)
+                    print("Erreur de format : pas de référence d'exigence pour le contenu suivant ;", paragraph)
 
             # Recherche d'une méthode de test d'exigence
             if self.requirement_test_style == paragraph.getAttribute('stylename'):
                 # Seulement si nous avions trouvé une référence d'exigence
-                if True == is_requirement_ref_found:
+                if is_requirement_ref_found:
                     requirement.test = teletype.extractText(paragraph)
-                    print("Vérif :", requirement.test)
                     # Fin de la création de l'exigence
                     requirements.append(requirement)
                     is_requirement_ref_found = False
                 else:
-                    print("Erreur de format : pas de référence d'exigence pour la méthode de test suivante", paragraph)
+                    print("Erreur de format : pas de référence d'exigence pour la méthode de test suivante ;", paragraph)
 
         return requirements

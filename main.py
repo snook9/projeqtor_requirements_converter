@@ -14,7 +14,7 @@ from Ui import Ui
 from pathlib import Path
 
 program_name = "ProjeQtOr Requirements Converter"
-program_version = "0.0.1"
+program_version = "0.0.2"
 
 
 def print_help(script_name: str):
@@ -59,4 +59,3 @@ if __name__ == '__main__':
     ui = Ui()
     # exécution
     ui.run(input_file_selected, output_folder_selected)
-

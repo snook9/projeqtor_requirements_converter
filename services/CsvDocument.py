@@ -14,11 +14,13 @@ class CsvDocument:
     def __init__(self: object):
         pass
 
-    def write(self, file: Path, requirements):
+    @staticmethod
+    def write(file: Path, requirements):
         if file.exists():
-            raise Error(-1, "Le fichier '" + file + "' existe déjà")
+            raise Error(-1, "Le fichier '" + str(file) + "' existe déjà")
 
         with open(file, 'w') as csvfile:
+            # En-tête du canevas du fichier CSV de ProjeQtOr
             fieldnames = ['id', 'reference', 'name', 'idRequirementType', 'idProject', 'idProduct', 'idComponent', 'externalReference',
                           'creationDateTime', 'idContact', 'originType', 'originId', 'idBusinessFeature', 'idUrgency', 'initialDueDate',
                           'actualDueDate', 'description', 'idRequirement', 'idStatus', 'idResource', 'idCriticality', 'idFeasibility',

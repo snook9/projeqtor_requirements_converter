@@ -54,7 +54,7 @@ class Ui(InterfaceUi):
             print(f"Erreur : {error}")
             return
 
-        print("FIN DE L'IMPORT DES EXIGENCES")
+        print("Lecture des exigences réussie !")
         self.displayRequirements(requirements)
 
         try:
@@ -64,6 +64,6 @@ class Ui(InterfaceUi):
             print(f"Erreur : {error}")
             return
 
-        print("Fichier '" + str(output_file) + "' créé")
+        print("Le fichier '" + str(output_file) + "' a été créé avec succès !")
 
 
