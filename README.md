@@ -1,14 +1,15 @@
 # projeqtor_requirements_converter
 Ce programme convertit un fichier ODT contenant des exigences vers un fichier CSV, prêt à être importé dans le logiciel ProjeQtOr : https://www.projeqtor.org/
 
-## Dépendances
-### odfpy 1.4.1
-Installation de la librairie Odfpy.
+## Installation
+Installation d'un environnement virtuel et des dépendances permettant l'exécution du programme.
     
-    pip install odfpy
+    ./install.sh
 
 ## Utilisation
-    python3 main.py [options]
+Utilisation du script de lancement du programme.
+
+    ./launch.sh [options]
     -h | --help                     : affiche la présente aide
     -v | --version                  : affiche la version du programme
     -i | --inputfile=[filepath]     : spécifie le chemin vers le fichier ODT à convertir
@@ -17,7 +18,7 @@ Installation de la librairie Odfpy.
 ### Exemple
 La ligne de commande ci-dessous, produit à partir du fichier 'doc/exemple_exigences.odt' un fichier CSV dans le dossier 'doc'.
     
-    python3 main.py -i doc/exemple_exigences.odt -o doc/
+    ./launch.sh -i doc/exemple_exigences.odt -o doc/
 
 ## Document d'entrée ODT
 Le document donné en entrée de l'application doit être au format ODT.
