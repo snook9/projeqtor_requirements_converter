@@ -14,7 +14,7 @@ from Ui import Ui
 from pathlib import Path
 
 program_name = "ProjeQtOr Requirements Converter"
-program_version = "0.0.2"
+program_version = "0.0.3"
 
 
 def print_help(script_name: str):
@@ -48,6 +48,11 @@ def parse_opt(script_name: str, argv):
             input_file = Path(arg)
         elif opt in ("-o", "--ouputfolder"):
             output_folder = Path(arg)
+
+    if not input_file.is_file():
+        print('Vous devez indiquer un fichier ODT d\'entrée à convertir')
+        print_help(script_name)
+        sys.exit(2)
 
     return input_file, output_folder
 
