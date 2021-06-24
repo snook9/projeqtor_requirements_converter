@@ -50,7 +50,7 @@ def parse_opt(script_name: str, argv):
             output_folder = Path(arg)
 
     if not input_file.is_file():
-        print('Vous devez indiquer un fichier ODT d\'entrée à convertir')
+        print('Vous devez indiquer un fichier ODT d\'entrée à convertir.')
         print_help(script_name)
         sys.exit(2)
 
